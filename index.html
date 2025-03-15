@@ -9,12 +9,12 @@
         import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
 
         const firebaseConfig = {
-            apiKey: "AIzaSyC1EkwbnVtMQDTXQAGZpy7mLYj4TlCZm3o",
-            authDomain: "cosmicsadmin.firebaseapp.com",
-            projectId: "cosmicsadmin",
-            storageBucket: "cosmicsadmin.appspot.com",
-            messagingSenderId: "818376951747",
-            appId: "1:818376951747:web:a5b2cc0265881d535a1f76"
+            apiKey: "{{APIKEY}}",
+            authDomain: "{{AUTHDOMAIN}}",
+            projectId: "{{PROJECTID}}",
+            storageBucket: "{{STORAGEBUCKET}}",
+            messagingSenderId: "{{MESSAGINGSENDERID}}",
+            appId: "{{APPID}}"
         };
 
         const app = initializeApp(firebaseConfig);
@@ -87,7 +87,7 @@
         <h2>Login</h2>
         <input type="email" id="email" placeholder="Email" required>
         <input type="password" id="password" placeholder="Password" required>
-        <div class="g-recaptcha" data-sitekey="6Lfb9fQqAAAAAO3dEN7-11rS7eCf-UcwCzBA7rxZ"></div>
+        <div class="g-recaptcha" data-sitekey="{{DATA_SITEKEY}}"></div>
         <button onclick="login()">Login</button>
     </div>
     <div class="container" id="form-container">
