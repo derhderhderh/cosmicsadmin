@@ -20,8 +20,8 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
 
-        // Firebase sign in
-        function login() {
+        // Firebase sign in function
+        window.login = function() {
             const email = document.getElementById("email").value;
             const password = document.getElementById("password").value;
 
@@ -37,7 +37,7 @@
     </script>
 
     <script>
-        // Store Firebase config in environment variables or fetch from a secure backend
+        // Firebase initialization script for older version of Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyC1EkwbnVtMQDTXQAGZpy7mLYj4TlCZm3o",
             authDomain: "cosmicsadmin.firebaseapp.com",
