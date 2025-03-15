@@ -4,26 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login & Form</title>
-    <!-- Firebase Modular SDK v9 -->
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
         import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
 
-        // Firebase configuration object
         const firebaseConfig = {
             apiKey: "AIzaSyC1EkwbnVtMQDTXQAGZpy7mLYj4TlCZm3o",
-            authDomain: "cosmicsadmin.web.app",
+            authDomain: "cosmicsadmin.firebaseapp.com",
             projectId: "cosmicsadmin",
-            storageBucket: "cosmicsadmin.firebasestorage.app",
+            storageBucket: "cosmicsadmin.appspot.com",
             messagingSenderId: "818376951747",
             appId: "1:818376951747:web:a5b2cc0265881d535a1f76"
         };
 
-        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
 
-        // Firebase login function
+        // Login function
         window.login = function() {
             const email = document.getElementById("email").value;
             const password = document.getElementById("password").value;
@@ -38,7 +35,6 @@
                 });
         }
     </script>
-
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <style>
         body {
@@ -87,7 +83,6 @@
     </style>
 </head>
 <body>
-    <!-- Login Section -->
     <div class="container" id="login-container">
         <h2>Login</h2>
         <input type="email" id="email" placeholder="Email" required>
@@ -95,10 +90,8 @@
         <div class="g-recaptcha" data-sitekey="6Lfb9fQqAAAAAO3dEN7-11rS7eCf-UcwCzBA7rxZ"></div>
         <button onclick="login()">Login</button>
     </div>
-
-    <!-- Form Section (Hidden until Login) -->
     <div class="container" id="form-container">
-        <h2 id="form-header">Submit Information</h2>
+        <h2>Submit Your Information</h2>
         <form id="customForm" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdjSG-hE5G8ESytwQyMDzqtJEOZvE-49ppjC-B0ALRs_YQZTg/formResponse" method="POST" target="hidden_iframe" onsubmit="submitted=true;">
             <input type="text" name="entry.1951271115" placeholder="Salutation" required>
             <textarea name="entry.41769743" placeholder="Paragraph 1" required></textarea>
@@ -108,6 +101,5 @@
         </form>
         <iframe name="hidden_iframe" style="display:none;"></iframe>
     </div>
-
 </body>
 </html>
