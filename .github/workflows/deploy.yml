@@ -1,0 +1,38 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Inject secrets and build the code
+      run: |
+        sed -i 's/{{APIKEY}}/'"${{ secrets.APIKEY }}"'/g' index.html
+        sed -i 's/{{APPID}}/'"${{ secrets.APPID }}"'/g' index.html
+        sed -i 's/{{AUTHDOMAIN}}/'"${{ secrets.AUTHDOMAIN }}"'/g' index.html
+        sed -i 's/{{DATA_SITEKEY}}/'"${{ secrets.DATA_SITEKEY }}"'/g' index.html
+        sed -i 's/{{MESSAGINGSENDERID}}/'"${{ secrets.MESSAGINGSENDERID }}"'/g' index.html
+        sed -i 's/{{PROJECTID}}/'"${{ secrets.PROJECTID }}"'/g' index.html
+        sed -i 's/{{STORAGEBUCKET}}/'"${{ secrets.STORAGEBUCKET }}"'/g' index.html
+
+    - name: Deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@v4.1.0
+      with:
+        branch: gh-pages
+        folder: .
