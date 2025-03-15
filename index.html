@@ -95,7 +95,7 @@
         <input type="email" id="email" placeholder="Email" required>
         <input type="password" id="password" placeholder="Password" required>
         <div class="g-recaptcha" data-sitekey="6Lfb9fQqAAAAAO3dEN7-11rS7eCf-UcwCzBA7rxZ"></div>
-        <button onclick="login()">Login</button>
+        <button id="loginBtn">Login</button>
     </div>
     <div class="container" id="form-container">
         <h2>Submit Your Information</h2>
@@ -107,5 +107,10 @@
             <button type="submit">Submit</button>
         </form>
     </div>
+
+    <script>
+        // Attach the login function to the login button
+        document.getElementById('loginBtn').onclick = login;
+    </script>
 </body>
 </html>
