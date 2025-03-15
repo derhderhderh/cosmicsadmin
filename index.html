@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login & Form</title>
+    
+    <!-- Use module type for Firebase imports -->
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
         import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
 
+        // Firebase Configuration
         const firebaseConfig = {
             apiKey: "AIzaSyC1EkwbnVtMQDTXQAGZpy7mLYj4TlCZm3o",
             authDomain: "cosmicsadmin.web.app",
@@ -17,10 +20,11 @@
             appId: "1:818376951747:web:a5b2cc0265881d535a1f76"
         };
 
+        // Initialize Firebase App
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
 
-        // Firebase Auth sign-in
+        // Firebase Authentication login function
         function login() {
             const email = document.getElementById("email").value;
             const password = document.getElementById("password").value;
@@ -35,7 +39,10 @@
                 });
         }
     </script>
+
+    <!-- Google reCAPTCHA -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
     <style>
         body {
             font-family: Arial, sans-serif;
