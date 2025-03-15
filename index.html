@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login & Form</title>
+    <!-- Firebase Modular SDK v9 -->
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
         import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
 
+        // Firebase configuration object
         const firebaseConfig = {
             apiKey: "AIzaSyC1EkwbnVtMQDTXQAGZpy7mLYj4TlCZm3o",
             authDomain: "cosmicsadmin.web.app",
@@ -17,10 +19,11 @@
             appId: "1:818376951747:web:a5b2cc0265881d535a1f76"
         };
 
+        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
 
-        // Firebase sign in function
+        // Firebase login function
         window.login = function() {
             const email = document.getElementById("email").value;
             const password = document.getElementById("password").value;
@@ -34,20 +37,6 @@
                     alert("Login failed: " + error.message);
                 });
         }
-    </script>
-
-    <script>
-        // Firebase initialization script for older version of Firebase
-        const firebaseConfig = {
-            apiKey: "AIzaSyC1EkwbnVtMQDTXQAGZpy7mLYj4TlCZm3o",
-            authDomain: "cosmicsadmin.firebaseapp.com",
-            projectId: "cosmicsadmin",
-            storageBucket: "cosmicsadmin.appspot.com",
-            messagingSenderId: "818376951747",
-            appId: "1:818376951747:web:a5b2cc0265881d535a1f76"
-        };
-
-        firebase.initializeApp(firebaseConfig);
     </script>
 
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
