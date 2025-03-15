@@ -4,21 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login & Form</title>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
-    <script>
-        // Store Firebase config in environment variables or fetch from a secure backend
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
+        import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
+
         const firebaseConfig = {
-            apiKey: "AIzaSyC1EkwbnVtMQDTXQAGZpy7mLYj4TlCZm3o", // Replace with your backend server config
-            authDomain: "cosmicsadmin.firebaseapp.com", // Replace with your project settings
-            projectId: "cosmicsadmin", // Replace with your project settings
-            storageBucket: "cosmicsadmin.appspot.com", // Replace with your project settings
-            messagingSenderId: "818376951747", // Replace with your project settings
-            appId: "1:818376951747:web:a5b2cc0265881d535a1f76" // Replace with your project settings
+            apiKey: "AIzaSyC1EkwbnVtMQDTXQAGZpy7mLYj4TlCZm3o",
+            authDomain: "cosmicsadmin.web.app",
+            projectId: "cosmicsadmin",
+            storageBucket: "cosmicsadmin.firebasestorage.app",
+            messagingSenderId: "818376951747",
+            appId: "1:818376951747:web:a5b2cc0265881d535a1f76"
         };
 
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // Firebase Auth sign-in
+        function login() {
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    document.getElementById("login-container").style.display = "none";
+                    document.getElementById("form-container").style.display = "block";
+                })
+                .catch((error) => {
+                    alert("Login failed: " + error.message);
+                });
+        }
     </script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <style>
@@ -85,26 +100,5 @@
             <button type="submit">Submit</button>
         </form>
     </div>
-    <script>
-        function login() {
-            var email = document.getElementById("email").value;
-            var password = document.getElementById("password").value;
-            var recaptchaResponse = grecaptcha.getResponse();
-
-            if (!recaptchaResponse) {
-                alert("Please complete the reCAPTCHA");
-                return;
-            }
-
-            firebase.auth().signInWithEmailAndPassword(email, password)
-                .then((userCredential) => {
-                    document.getElementById("login-container").style.display = "none";
-                    document.getElementById("form-container").style.display = "block";
-                })
-                .catch((error) => {
-                    alert("Login failed: " + error.message);
-                });
-        }
-    </script>
 </body>
 </html>
