@@ -4,13 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login & Form</title>
-    
-    <!-- Use module type for Firebase imports -->
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
         import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
 
-        // Firebase Configuration
         const firebaseConfig = {
             apiKey: "AIzaSyC1EkwbnVtMQDTXQAGZpy7mLYj4TlCZm3o",
             authDomain: "cosmicsadmin.web.app",
@@ -20,11 +17,10 @@
             appId: "1:818376951747:web:a5b2cc0265881d535a1f76"
         };
 
-        // Initialize Firebase App
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
 
-        // Firebase Authentication login function
+        // Firebase sign in
         function login() {
             const email = document.getElementById("email").value;
             const password = document.getElementById("password").value;
@@ -40,9 +36,21 @@
         }
     </script>
 
-    <!-- Google reCAPTCHA -->
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+        // Store Firebase config in environment variables or fetch from a secure backend
+        const firebaseConfig = {
+            apiKey: "AIzaSyC1EkwbnVtMQDTXQAGZpy7mLYj4TlCZm3o",
+            authDomain: "cosmicsadmin.firebaseapp.com",
+            projectId: "cosmicsadmin",
+            storageBucket: "cosmicsadmin.appspot.com",
+            messagingSenderId: "818376951747",
+            appId: "1:818376951747:web:a5b2cc0265881d535a1f76"
+        };
 
+        firebase.initializeApp(firebaseConfig);
+    </script>
+
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -90,27 +98,27 @@
     </style>
 </head>
 <body>
+    <!-- Login Section -->
     <div class="container" id="login-container">
         <h2>Login</h2>
         <input type="email" id="email" placeholder="Email" required>
         <input type="password" id="password" placeholder="Password" required>
         <div class="g-recaptcha" data-sitekey="6Lfb9fQqAAAAAO3dEN7-11rS7eCf-UcwCzBA7rxZ"></div>
-        <button id="loginBtn">Login</button>
-    </div>
-    <div class="container" id="form-container">
-        <h2>Submit Your Information</h2>
-        <form>
-            <input type="text" name="salutation" placeholder="Salutation" required>
-            <textarea name="paragraph1" placeholder="Paragraph 1" required></textarea>
-            <textarea name="paragraph2" placeholder="Paragraph 2" required></textarea>
-            <input type="text" name="closure" placeholder="Closure" required>
-            <button type="submit">Submit</button>
-        </form>
+        <button onclick="login()">Login</button>
     </div>
 
-    <script>
-        // Attach the login function to the login button
-        document.getElementById('loginBtn').onclick = login;
-    </script>
+    <!-- Form Section (Hidden until Login) -->
+    <div class="container" id="form-container">
+        <h2 id="form-header">Submit Information</h2>
+        <form id="customForm" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdjSG-hE5G8ESytwQyMDzqtJEOZvE-49ppjC-B0ALRs_YQZTg/formResponse" method="POST" target="hidden_iframe" onsubmit="submitted=true;">
+            <input type="text" name="entry.1951271115" placeholder="Salutation" required>
+            <textarea name="entry.41769743" placeholder="Paragraph 1" required></textarea>
+            <textarea name="entry.884659115" placeholder="Paragraph 2" required></textarea>
+            <input type="text" name="entry.172625463" placeholder="Closure" required>
+            <button type="submit">Submit</button>
+        </form>
+        <iframe name="hidden_iframe" style="display:none;"></iframe>
+    </div>
+
 </body>
 </html>
